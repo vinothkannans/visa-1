@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "vinkas/laravel-visa",
+    "description": "An authentication system using Laravel Framework, Socialite and Passport",
+    "keywords": ["visa", "laravel", "socialite", "passport"],
     "license": "MIT",
     "type": "project",
     "require": {
