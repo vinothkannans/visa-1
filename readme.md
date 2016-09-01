@@ -4,8 +4,8 @@ An authentication system using [Laravel Framework](https://github.com/laravel/la
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel Visa, please send an e-mail to Vinoth Kannan at vinothkannan@vinkas.com. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within Visa, please send an e-mail to Vinoth Kannan at vinothkannan@vinkas.com. All security vulnerabilities will be promptly addressed.
 
 ## License
 
-Laravel Visa is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Vinkas Visa is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
