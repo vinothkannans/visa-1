@@ -1,6 +1,6 @@
 # Laravel Visa
 
-An authentication system using [Laravel Framework](https://github.com/laravel/laravel), [Laravel Socialite](https://github.com/laravel/Socialite) and [Laravel Passport](https://github.com/laravel/passport) packages
+An authentication system using [Laravel Framework](https://github.com/laravel/laravel), [Laravel Socialite](https://github.com/laravel/Socialite) and [Laravel Passport](https://github.com/laravel/passport)
 
 ## Security Vulnerabilities
 
