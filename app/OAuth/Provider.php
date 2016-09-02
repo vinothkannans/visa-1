@@ -19,4 +19,12 @@ class Provider extends Model
      * @var bool
      */
     public $timestamps = false;
+	
+	/**
+     * Get all of the users for the provider.
+     */
+    public function users()
+    {
+        return $this->hasMany('App\OAuth\User');
+    }
 }
