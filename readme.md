@@ -1,6 +1,6 @@
 # Vinkas Visa
 
-An authentication system using [Laravel Framework](https://github.com/laravel/laravel), [Socialite](https://github.com/laravel/Socialite) and [Passport](https://github.com/laravel/passport)
+An authentication system using [Laravel Framework](https://github.com/laravel/laravel) 5.3, [Socialite](https://github.com/laravel/Socialite) and [Passport](https://github.com/laravel/passport)
 
 ## Security Vulnerabilities
 
