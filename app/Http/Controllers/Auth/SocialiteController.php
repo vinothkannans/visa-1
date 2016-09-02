@@ -39,9 +39,9 @@ class SocialiteController extends Controller
     public function handleCallback($providerName)
     {
 		$provider = OAuth\Provider::where('name', $providerName)->first();
-        $puser = Socialite::driver($providerName)->user();
+		$puser = Socialite::driver($providerName)->user();
 		$ouser = $provider->users()->where('id', $puser->getId())->first();
-        if($ouser == null) {
+		if($ouser == null) {
 			$ouser = $this->create($provider->id, $puser);
 		}
 		if($ouser->user_id) {
@@ -59,7 +59,7 @@ class SocialiteController extends Controller
 			}
 			return redirect()->route('join');
 		}
-    }
+	}
 	
 	public function redirectAfterLogin() {
 		return redirect('/');
@@ -77,12 +77,12 @@ class SocialiteController extends Controller
 		
 		$ouser->token = $puser->token;
 		if(isset($puser->tokenSecret)) {
-			 $ouser->token_secret = $puser->tokenSecret;
+			$ouser->token_secret = $puser->tokenSecret;
 		} else {
 			$ouser->refresh_token = $puser->refreshToken;
 			$ouser->expires_in = $puser->expiresIn;
 		}
-		
+
 		$ouser->save();
 		return $ouser;
 	}
