@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Socialite;
 use App;
 use App\OAuth;
@@ -36,7 +37,7 @@ class SocialiteController extends Controller
      *
      * @return Response
      */
-    public function handleCallback($providerName)
+    public function handleCallback(Request $request, $providerName)
     {
 		$provider = OAuth\Provider::where('name', $providerName)->first();
 		$puser = Socialite::driver($providerName)->user();
@@ -57,6 +58,7 @@ class SocialiteController extends Controller
 					return $this->redirectAfterLogin();
 				}
 			}
+			$request->session()->put('oauth_user_id', $ouser->id);
 			return redirect()->route('join');
 		}
 	}
@@ -92,9 +94,9 @@ class SocialiteController extends Controller
      *
      * @return Response
      */
-    public function handleGoogleCallback()
+    public function handleGoogleCallback(Request $request)
     {
-        return $this->handleCallback('google');
+        return $this->handleCallback($request, 'google');
     }
 	
 }
