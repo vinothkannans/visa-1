@@ -14,4 +14,12 @@ class User extends Model
     protected $table = 'oauth_users';
 
     public $incrementing = false;
+
+    /**
+     * Get the provider of the oauth user.
+     */
+    public function provider()
+    {
+      return $this->belongsTo('App\OAuth\Provider');
+    }
 }
