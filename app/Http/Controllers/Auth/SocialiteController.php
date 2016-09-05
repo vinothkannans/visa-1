@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Socialite;
+use App;
+use App\OAuth;
+use Auth;
 
 class SocialiteController extends Controller
 {
@@ -33,10 +36,55 @@ class SocialiteController extends Controller
    *
    * @return Response
    */
-  public function handleCallback($provider)
+  public function handleCallback($providerName)
   {
-    $user = Socialite::driver($provider)->user();
-    return $user->getName();
+    $provider = OAuth\Provider::where('name', $providerName)->first();
+    $puser = Socialite::driver($providerName)->user();
+    $ouser = $provider->users()->where('id', $puser->getId())->first();
+    if($ouser == null) {
+      $ouser = $this->create($provider->id, $puser);
+    }
+    if($ouser->user_id) {
+      Auth::loginUsingId($ouser->user_id, true);
+      return $this->redirectAfterLogin();
+    } else {
+      if($puser->getEmail()) {
+        $user = App\User::where('email', $puser->getEmail())->first();
+        if($user) {
+          $ouser->user_id = $user->id;
+          $ouser->save();
+          Auth::login($user, true);
+          return $this->redirectAfterLogin();
+        }
+      }
+      return redirect()->route('join');
+    }
+  }
+
+  public function redirectAfterLogin() {
+    return redirect('/');
+  }
+
+  protected function create($providerId, $puser) {
+    $ouser = new OAuth\User;
+    $ouser->provider_id = $providerId;
+
+    $ouser->id = $puser->getId();
+    $ouser->name = $puser->getName();
+    $ouser->nickname = $puser->getNickname();
+    $ouser->email = $puser->getEmail();
+    $ouser->avatar = $puser->getAvatar();
+
+    $ouser->token = $puser->token;
+    if(isset($puser->tokenSecret)) {
+      $ouser->token_secret = $puser->tokenSecret;
+    } else {
+      $ouser->refresh_token = $puser->refreshToken;
+      $ouser->expires_in = $puser->expiresIn;
+    }
+
+    $ouser->save();
+    return $ouser;
   }
 
   /**
