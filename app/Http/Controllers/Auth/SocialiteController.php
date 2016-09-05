@@ -36,7 +36,7 @@ class SocialiteController extends Controller
    *
    * @return Response
    */
-  public function handleCallback($providerName)
+  public function handleCallback(Request $request, $providerName)
   {
     $provider = OAuth\Provider::where('name', $providerName)->first();
     $puser = Socialite::driver($providerName)->user();
@@ -92,9 +92,9 @@ class SocialiteController extends Controller
    *
    * @return Response
    */
-  public function handleGoogleCallback()
+  public function handleGoogleCallback(Request $request)
   {
-    return $this->handleCallback('google');
+    return $this->handleCallback($request, 'google');
   }
 
 }
