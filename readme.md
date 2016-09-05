@@ -1,6 +1,6 @@
 # Vinkas Visa
 
-A simple, secure user authentication and management system using [Laravel](https://github.com/laravel/laravel)
+A simple, secure user authentication and management system using [Laravel](https://github.com/laravel/laravel) and [Passport](https://github.com/laravel/possport).
 
 ## Security Vulnerabilities
 
